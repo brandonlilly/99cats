@@ -1,0 +1,23 @@
+<h1><%= @cat.name %></h1>
+<ul>
+  <li>Age: <%= @cat.age %> seconds
+  <li>Sex: <%= @cat.sex == 'M' ? 'Male' : 'Female' %>
+  <li>Color: <%= @cat.color.capitalize %>
+  <% unless @cat.description.nil? %>
+    <li>Description: <%= @cat.description %>
+  <% end %>
+
+  <% requests = @cat.rental_requests.order(:start_date) %>
+  <% unless requests.empty? %>
+    <li>Requests:
+    <ol>
+      <% requests.each do |request| %>
+        <li><%= request.start_date.strftime('%Y-%m-%d') %> - <%= request.end_date.strftime('%Y-%m-%d') %>: <%= request.status %>
+          <% if request.pending? %>
+            <%= button_to 'Approve', approve_cat_rental_request_url(request), method: :post %>
+            <%= button_to 'Deny',    deny_cat_rental_request_url(request),    method: :post %>
+          <% end %>
+      <% end %>
+    </ol>
+  <% end %>
+</ul>

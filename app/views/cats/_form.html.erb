@@ -1,0 +1,42 @@
+<%
+title, url, request = if cat.persisted?
+  ['Edit', cat_url(cat), 'PATCH']
+else
+  ['Create', cats_url, 'POST']
+end
+%>
+
+<h1><%= title %> Cat</h1>
+
+<form action='<%= url %>' method='POST'>
+  <input type="hidden" name="_method" value='<%= request %>'>
+  <label>
+    Name: <input type='text' name='cats[name]' value='<%= @cat.name %>'>
+  </label>
+  <br/>
+
+  Sex:<br/>
+  <label><input type='radio' name='cats[sex]' value='M' <%= "checked" if @cat.sex == 'M' %>>Male</label><br/>
+  <label><input type='radio' name='cats[sex]' value='F' <%= "checked" if @cat.sex == 'F' %>>Female</label><br/>
+
+  Color:
+  <select name='cats[color]'>
+    <option>
+    <% Cat::COLORS.each do |color| %>
+      <option
+        value='<%= color %>' <%= 'selected' if @cat.color == color %> ><%= color.capitalize %></option>
+    <% end %>
+  </select>
+  <br/>
+
+  Birth date:
+  <input type='date' name='cats[birth_date]' value='<%= @cat.birth_date.try(:strftime, '%Y-%m-%d') %>'>
+  <br/>
+
+  Description:<br/>
+  <textarea name='cats[description]'><%= @cat.description %></textarea>
+
+  <br/>
+  <input type='submit' value='<%= title %> Cat!'>
+
+</form>
