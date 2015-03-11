@@ -1,23 +1,25 @@
-<% if flash[:error] %>
-  <p class="flash-error"><%= flash[:error] %></p>
-<% end %>
-
 <form action='<%= cat_rental_requests_url %>' method='POST'>
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+
   Cat:<br/>
   <select name='cat_rental_requests[cat_id]'>
     <option></option>
     <% @cats.each do |cat| %>
-      <option value='<%= cat.id %>'><%= cat.name %></option>
+      <option value='<%= cat.id %>' <%= 'selected' if @request.cat.try(:id) == cat.id %>><%= cat.name %></option>
     <% end %>
   </select>
   <br/>
 
   Start date:
-  <input type='date' name='cat_rental_requests[start_date]'>
+  <input type='date' name='cat_rental_requests[start_date]'
+         value='<%= @request.start_date.try(:strftime, '%Y-%m-%d') %>'>
   <br/>
 
   End date:
-  <input type='date' name='cat_rental_requests[end_date]'>
+  <input type='date' name='cat_rental_requests[end_date]'
+         value='<%= @request.end_date.try(:strftime, '%Y-%m-%d') %>'>
   <br/>
 
   <input type='submit' value='Submit Request'>

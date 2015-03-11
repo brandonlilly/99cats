@@ -10,6 +10,7 @@
 #  description :text
 #  created_at  :datetime
 #  updated_at  :datetime
+#  user_id     :integer
 #
 
 class Cat < ActiveRecord::Base
@@ -24,6 +25,12 @@ class Cat < ActiveRecord::Base
     primary_key: :id,
     class_name:  :CatRentalRequest,
     dependent: :destroy
+
+  belongs_to(
+    :owner,
+    foreign_key: :user_id,
+    class_name: :User
+  )
 
   def age
     Time.now - birth_date

@@ -7,4 +7,6 @@ Rails.application.routes.draw do
       post '/deny' => 'cat_rental_requests#deny'
     end
   end
+  resource :user, only: [:create, :new, :show]
+  resource :session#, only: [:new, :create, :destroy]
 end

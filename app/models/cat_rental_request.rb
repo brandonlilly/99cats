@@ -12,11 +12,12 @@
 #
 
 class CatRentalRequest < ActiveRecord::Base
-  validates :cat_id, :start_date, :end_date, :status, presence: true
+  validates :cat_id, :start_date, :end_date, :status, :user_id, presence: true
   validates :status, inclusion: { in: ['APPROVED', 'DENIED', 'PENDING'] }
   validate :no_overlapping_approved_requests
 
   belongs_to :cat
+  belongs_to :user
 
   def approved?
     status == 'APPROVED'

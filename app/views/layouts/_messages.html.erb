@@ -1,0 +1,7 @@
+<% [:errors, :warnings].each do |type| %>
+  <% if flash.now[type] %>
+    <% [flash.now[type]].compact.each do |error| %>
+     <%= error %><br />
+    <% end %>
+  <% end %>
+<% end %>
