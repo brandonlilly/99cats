@@ -1,5 +1,5 @@
 class CatsController < ApplicationController
-  before_action :ensure_owner, only: [:create, :edit]
+  before_action :ensure_owner, only: [:update, :edit]
 
   def index
     @cats = Cat.all

@@ -10,9 +10,10 @@
 
   <% if current_user %>
     <p>Hello <%= current_user.user_name %>!</p>
-    <%= button_to 'Logout', session_url, method: :delete %>
+    <%= link_to 'Sessions', sessions_url %>
+    <%= button_to 'Logout', session_url("0"), method: :delete %>
   <% else %>
-    <%= link_to "Login", new_session_url %> or <%= link_to "Sign up", new_user_url %>
+    <%= link_to 'Login', new_session_url %> or <%= link_to "Sign up", new_user_url %>
   <% end %>
 
   <%= render partial: 'layouts/messages' %>

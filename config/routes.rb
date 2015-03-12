@@ -8,5 +8,5 @@ Rails.application.routes.draw do
     end
   end
   resource :user, only: [:create, :new, :show]
-  resource :session#, only: [:new, :create, :destroy]
+  resources :sessions, only: [:new, :create, :destroy, :index]
 end

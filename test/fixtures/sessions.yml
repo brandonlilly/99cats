@@ -1,15 +1,12 @@
 # == Schema Information
 #
-# Table name: cat_rental_requests
+# Table name: sessions
 #
 #  id         :integer          not null, primary key
-#  cat_id     :integer          not null
-#  start_date :datetime         not null
-#  end_date   :datetime         not null
-#  status     :string           default("PENDING"), not null
+#  user_id    :integer          not null
+#  token      :string           not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  user_id    :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

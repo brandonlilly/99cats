@@ -1,0 +1,7 @@
+<h1>Your Sessions</h1>
+
+<ol>
+  <% @sessions.each do |session| %>
+    <li><%= session.environment %> since <%= session.created_at %><%= button_to 'X', session, method: :delete %>
+  <% end %>
+</ol>
